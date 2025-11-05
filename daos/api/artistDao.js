@@ -8,7 +8,7 @@ const artistDao = {
 
         let albums = []
 
-        let sql = `SELECT al.album_id, title, yr_released FROM album WHERE artist_id = ${id};`
+        let sql = `SELECT album_id, title, yr_released FROM album WHERE artist_id = ${id};`
 
         //.execute(query, callback func)
         // .execute(query, array, callback func)
@@ -21,7 +21,7 @@ const artistDao = {
                     })
                     //console.log(albums)
                     con.execute(
-                        `SELECT * FROM ${table}_id = ${id};`,
+                        `SELECT * FROM ${table} WHERE ${table}_id = ${id};`,
                         (error, rows)=> {
                             rows.forEach(row => {
                              row.albums = albums

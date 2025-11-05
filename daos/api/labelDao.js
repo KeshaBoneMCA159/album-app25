@@ -5,12 +5,12 @@ const labelDao = {
 
     //methods that are particular to the title table
 
-     //findAlbumsByLabel
+     //findAlbumsByBand
     findAlbumsByLabel: (res, table, id)=> {
 
         let albums = []
 
-        let sql = `SELECT al.album_id, title, yr_released FROM album WHERE label_id = ${id};`
+        let sql = `SELECT album_id, title, yr_released FROM album WHERE label_id = ${id};`
 
         //.execute(query, callback func)
         // .execute(query, array, callback func)
@@ -23,7 +23,7 @@ const labelDao = {
                     })
                     //console.log(albums)
                     con.execute(
-                        `SELECT * FROM ${table}_id = ${id};`,
+                        `SELECT * FROM ${table} WHERE ${table} = ${id};`,
                         (error, rows)=> {
                             rows.forEach(row => {
                              row.albums = albums

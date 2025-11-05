@@ -39,7 +39,7 @@ const albumDao = {
 
     findAlbumByArtistId: (res, table, id)=> {
 
-        const sql = `SELECT title, album_id, yr_released FROM $0{table} WHERE artist_id = ${id};`
+        const sql = `SELECT title, album_id, yr_released FROM ${table} WHERE artist_id = ${id};`
 
         con.query(
             sql,

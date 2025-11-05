@@ -2,16 +2,14 @@ const express = require('express')
 const router = express.Router()
 const PORT = process.env.PORT || 3000
 
-const pool = require('../config/dbconfig.js')
-
 // Step 4 Root route => http://localhost:3000/api
 router.get('/api', (req, res)=> {
     //res.send('album api')
     res.json({
         'Albums': `http://localhost:${PORT}/api/album`,
-        'Artists': 'http"//localhost:${PORT}/api/artist',
+        'Artists': 'http://localhost:${PORT}/api/artist',
         'Bands': `http://localhost:${PORT}/api/band`,
-        'Labels': 'http"//localhost:${PORT}/api/label'
+        'Labels': 'http://localhost:${PORT}/api/label'
     })
 })
 
