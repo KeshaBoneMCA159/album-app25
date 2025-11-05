@@ -1,0 +1,50 @@
+const con = require('../../config/dbconfig')
+
+const labelDao = {
+    table: 'label',
+
+    //methods that are particular to the title table
+
+     //findAlbumsByLabel
+    findAlbumsByLabel: (res, table, id)=> {
+
+        let albums = []
+
+        let sql = `SELECT al.album_id, title, yr_released FROM album WHERE label_id = ${id};`
+
+        //.execute(query, callback func)
+        // .execute(query, array, callback func)
+        con.execute(
+            sql, 
+            (error, rows)=> {
+                if (!error) {
+                    Object.values(rows).forEach(obj => {
+                        albums.push(obj)
+                    })
+                    //console.log(albums)
+                    con.execute(
+                        `SELECT * FROM ${table}_id = ${id};`,
+                        (error, rows)=> {
+                            rows.forEach(row => {
+                             row.albums = albums
+                            }) 
+                            if (!error) {
+                                res.json(...rows)
+                            } else {
+                                console.log('DAO Error:', error)
+                            }
+                        }
+                    )
+                } else {
+                    res.json({
+                        message: 'error',
+                        table: `${table}`,
+                        error: error
+                    })
+                }
+            }
+        )
+    }
+}
+
+module.exports = labelDao

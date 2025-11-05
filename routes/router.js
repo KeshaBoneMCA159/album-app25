@@ -8,11 +8,26 @@ const pool = require('../config/dbconfig.js')
 router.get('/api', (req, res)=> {
     //res.send('album api')
     res.json({
-        'Albums': `http://localhost:${PORT}/api/album`
+        'Albums': `http://localhost:${PORT}/api/album`,
+        'Artists': 'http"//localhost:${PORT}/api/artist',
+        'Bands': `http://localhost:${PORT}/api/band`,
+        'Labels': 'http"//localhost:${PORT}/api/label'
     })
 })
 
-router.use('/api/album', require('./api/albumRoutes'))
+const endpoints = [
+    'album',
+    'artist',
+    'band',
+    'label'
+]
+
+// router.use('/api/album', require('./api/albumRoutes'))
+// router.use('/api/artist', require('./api/artistRoutes'))
+
+endpoints.forEach(endpoint => {
+    router.use(`/api/${endpoint}`, require(`./api/${endpoint}Routes`))
+})
 
 // Step 5 Error page
 router.use((req, res, next)=> {

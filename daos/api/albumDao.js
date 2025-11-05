@@ -1,4 +1,5 @@
 const con = require('../../config/dbconfig')
+const { queryAction} = require('../../helpers/queryAction')
 
 const albumDao = {
     
@@ -33,6 +34,19 @@ const albumDao = {
                 queryAction(res, error, rows, table)
             }
                 
+        )
+    },
+
+    findAlbumByArtistId: (res, table, id)=> {
+
+        const sql = `SELECT title, album_id, yr_released FROM $0{table} WHERE artist_id = ${id};`
+
+        con.query(
+            sql,
+            (error, rows)=> {
+
+                queryAction(res, error, rows, table)
+            }
         )
     }
 }
