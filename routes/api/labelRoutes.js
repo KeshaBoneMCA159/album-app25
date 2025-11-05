@@ -1,14 +1,15 @@
+
 const router = require('express').Router()
 
-const { labelDao : dao} = require('../../daos/dao')
+const { labelDao : dao } = require('../../daos/dao')
 
 // http://localhost:3000/api/label
 router.get('/', (req, res)=> {
     dao.findAll(req, res, dao.table)
 })
 
-// http://localhost:3000/api/label/sort/:sort
-router.get('/sort/:sort', (req, res)=> {
+// http://locahost:3000/api/label/sort/:sort
+router.get('/sort/:sorter', (req, res)=> {
     dao.sort(res, dao.table, req.params.sorter)
 })
 

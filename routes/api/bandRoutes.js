@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { bandDao : dao} = require('../../daos/dao')
+const { bandDao : dao } = require('../../daos/dao')
 
 // http://localhost:3000/api/band
 router.get('/', (req, res)=> {
@@ -8,10 +8,11 @@ router.get('/', (req, res)=> {
 })
 
 router.get('/get_albums/:id', (req, res)=> {
-    dao.find
+    dao.findAlbumsByBand(res, dao.table, req.params.id)
 })
-// http://localhost:3000/api/band/sort/:sort
-router.get('/sort/:sort', (req, res)=> {
+
+// http://locahost:3000/api/band/sort/:sort
+router.get('/sort/:sorter', (req, res)=> {
     dao.sort(res, dao.table, req.params.sorter)
 })
 

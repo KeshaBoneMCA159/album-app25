@@ -7,11 +7,7 @@ router.get('/', (req, res)=> {
     dao.findAll(req, res, dao.table)
 })
 
-router.get('/get_albums/:id', (req, res)=> {
-    dao.findAlbumsByArtistId(res, table, req.params.id)
-})
-
-http://localhost3000/api/artist/get_artist
+// http://localhost:3000/api/artist/get_albums/:id
 router.get('/get_albums/:id', (req, res)=> {
     dao.findAlbumsByArtist(res, dao.table, req.params.id)
 })

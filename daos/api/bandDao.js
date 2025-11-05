@@ -3,31 +3,27 @@ const con = require('../../config/dbconfig')
 const bandDao = {
     table: 'band',
 
-    //methods that are particular to the title table
-
-     //findAlbumsByBand
+    // methods that are particular to the band table
     findAlbumsByBand: (res, table, id)=> {
-
         let albums = []
 
         let sql = `SELECT album_id, title, yr_released FROM album WHERE band_id = ${id};`
-
-        //.execute(query, callback func)
-        // .execute(query, array, callback func)
+        // .execute(query, callback function)
+        // .execute(query, array, callback function)
         con.execute(
-            sql, 
+            sql,
             (error, rows)=> {
                 if (!error) {
                     Object.values(rows).forEach(obj => {
                         albums.push(obj)
                     })
-                    //console.log(albums)
+                    // console.log(albums)
                     con.execute(
-                        `SELECT * FROM ${table} WHERE ${table} = ${id};`,
+                        `Select * FROM ${table} WHERE ${table}_id = ${id};`,
                         (error, rows)=> {
                             rows.forEach(row => {
-                             row.albums = albums
-                            }) 
+                                row.albums = albums
+                            })
                             if (!error) {
                                 res.json(...rows)
                             } else {
@@ -43,7 +39,9 @@ const bandDao = {
                     })
                 }
             }
+
         )
+        
     }
 }
 
