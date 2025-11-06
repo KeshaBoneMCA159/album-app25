@@ -27,5 +27,5 @@ server.use(express.urlencoded({ extended: true}))
 server.use('/', router)
 
 // Part of Step 1
-server.listen(PORT, ()=> console.log(`Here we go!!!`))
+server.listen(PORT, ()=> console.log(`It was working a second ago!!!`))
 
