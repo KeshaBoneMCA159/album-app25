@@ -26,5 +26,15 @@ router.post('/create', (req, res)=> {
     dao.create(req, res, dao.table)
 })
 
+// PATCH
+router.patch('/update/:id', (req, res)=> {
+    dao.update(req, res, dao.table)
+})
+
+// DELETE
+router.delete('/delete/:id', (req, res)=> {
+    console.log(req.params.id)
+    dao.delete(res, dao.table, req.params.id)
+})
 
 module.exports = router
